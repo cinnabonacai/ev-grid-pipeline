@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw
+    database: EV_GRID
+    schema: RAW
+    tables:
+      - name: EIA_DEMAND_HOURLY_RAW
+        loaded_at_field: _LOADED_AT
+        config:
+          freshness:
+            warn_after: {count: 36, period: hour}
+            error_after: {count: 72, period: hour}
+      - name: NLR_EV_STATIONS_RAW

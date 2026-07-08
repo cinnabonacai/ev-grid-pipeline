@@ -220,3 +220,6 @@ __marimo__/
 .env
 venv/
 *.p8
+airflow/*
+!airflow/dags/
+!airflow/dags/**

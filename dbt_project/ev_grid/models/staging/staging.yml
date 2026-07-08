@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_eia_demand
+    columns:
+      - name: demand_hour_ts
+        tests:
+          - not_null
+      - name: balancing_authority
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['CISO', 'ERCO', 'NYIS', 'PJM', 'MISO']
+      - name: demand_mwh
+        tests:
+          - not_null
+
+  - name: stg_ev_stations
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+          - unique
+      - name: state
+        tests:
+          - not_null

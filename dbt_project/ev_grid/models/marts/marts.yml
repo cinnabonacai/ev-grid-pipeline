@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: fct_daily_demand
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - demand_date
+              - balancing_authority
+    columns:
+      - name: total_demand_mwh
+        tests:
+          - not_null
+      - name: hours_reported
+        tests:
+          - accepted_values:
+              arguments:
+                values: [23, 24, 25]
+                quote: false
+
+  - name: mart_demand_vs_ev_infra
+    columns:
+      - name: state
+        tests:
+          - not_null
+          - unique
+      - name: dc_fast_ports_per_gwh_daily_demand
+        tests:
+          - not_null
